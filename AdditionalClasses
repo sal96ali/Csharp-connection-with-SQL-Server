@@ -1,0 +1,114 @@
+//Person Class
+
+public class Person
+    {
+        public string FName { get; set; }
+        public string LName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+
+       
+        public string FullInfo
+        {
+            get
+            {
+                return $"{FName} {LName}  Email:{Email}, Phone:{Phone}"; 
+            }
+            
+        }
+    }
+    
+    
+//DataAccess Class
+
+
+
+//****************************
+using Dapper;
+//****************************
+
+
+public class DataAccess
+    {
+        public List<Person> GetPeople(string lastName)
+        {
+            using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
+
+            {
+                return MyConnection.Query<Person>("dbo.People_GetByLastName @LName ", new { LName = lastName }).ToList();
+
+            }
+
+         }
+
+        public void InsertData(string firstName, string lastName, string email, string phone)
+        {
+            
+             
+             using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
+
+            {
+                List<Person> people = new List<Person>();
+                people.Add(new Person { FName = firstName, LName = lastName, Email = email, Phone = phone });
+                MyConnection.Execute("[dbo].[People_Insertt] @FName, @LName ,@Email ,@Phone", people);
+            }
+             
+
+        }
+
+        public void DeleteData(string lastNameD)
+        {
+            using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
+
+            {
+               MyConnection.Query<Person>($"Delete from People where LName='{lastNameD}'").ToList();
+            }
+        }
+
+        public string TotalR()
+        {
+            using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
+            {
+               
+               var output = MyConnection.ExecuteScalar("select count (*) from People");
+                return output.ToString();
+               
+            }
+        }
+
+        public List<Person> ShowAll()
+        {
+            using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
+            {
+                return MyConnection.Query<Person>($"dbo.showAllPeople").ToList();
+            }
+        }
+    }
+    
+    
+//App.configuration
+
+<connectionStrings>
+    <add name="salimConnection" connectionString="Server=.;Database=SampleDB;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  
+  
+//ConnectionToSQL class
+
+
+//************************
+using System.Configuration;
+//************************
+namespace SqlDataAccess
+{
+    public static class Helper
+    {
+        public static string ConnectionValue(string nameee)
+        {
+            var op= ConfigurationManager.ConnectionStrings[nameee].ConnectionString;
+            return op;
+        }
+        
+    }
+}
+
