@@ -1,5 +1,7 @@
-# Csharp-connection-with-SQL-Server <br>
-This is an SQL server connection demo using a desktop application C#-based.<br> Written by : Salim Ali
+# Csharp-connection-with-SQL-Server 
+<br>
+This is an SQL server connection demo using a desktop application C#-based.<br>
+<strong> Written by : Salim Ali</strong>
 
 1. <strong>Overview</strong> <br>
       First things first, this project is just a demo that tests the connection between Windows application (C# based)
