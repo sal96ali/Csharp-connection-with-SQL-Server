@@ -1,9 +1,9 @@
 # Csharp-connection-with-SQL-Server
-This is an SQL server connection demo, using a desktop application C#-based. Written by : Salim Ali
+This is an SQL server connection demo using a desktop application C#-based. Written by : Salim Ali
 
-1. Overview
-      First think first, this project is just a demo that tests the connection between windows application (C# based)
-    and a database stored in local server.
+1. Overview <br>
+      First things first, this project is just a demo that tests the connection between Windows application (C# based)
+    and a database stored in a local server.
 
 2. Procedure
       This small project is divided into two seperated parts. The Windows Desktop Application part, and the Database part.
