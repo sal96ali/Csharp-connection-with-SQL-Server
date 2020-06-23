@@ -6,20 +6,19 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
     and a database stored in a local server.
 
 2. <strong>Procedure</strong> <br>
-      This small project is divided into two seperated parts. The Windows Desktop Application part, and the Database part.
-    In the first part I used Visual Studio IDE to accomplish this part. In this environment I chose Windows Forms App (.Net Framework)
-    C#-based and made the UI and its code as in attached files:
-        UI:
-        UI Code:
-        Additional Classes:
-    In other hand, I genrated a random personal info using this website: , first name, last name, email, and phone numbers. And stored this 
-    information in a CSV file in my PC. Then I import them to a table (I called it [dbo].[People]) in local database using SQL Server Management System (SSMS). 
+      This small project is divided into two seperate parts. The Windows Desktop Application part, and the Database part.
+    In the first part I used Visual Studio IDE to accomplish it. In this environment I chose Windows Forms App (.Net Framework)
+    C#-based and made the UI and its code as in attached files: <br>
+        UI:<br>
+        UI Code:<br>
+        Additional Classes:<br>
+    On other hand, I genrated a random personal info using this website: , first name, last name, email, and phone numbers. And stored these 
+    data in a CSV file in my PC. Lastly, I imported them to a table (I called it [dbo].[People]) in a local database using SQL Server Management System (SSMS).<br> 
     
-    2.1 Part I : Windows Desktop Application
+    2.1 Part I: Windows Desktop Application<br>
     
-    As said, I used VS IDE to design the UI: . The UI contains lables, buttons, textboxes, and listbox. the main UI does four missions, search
-    in database.[People] by last name, delete a racord, show all records, and insert(add) new records. And as in  Additional Classes: .
-    I create three additional classes [Person.cs, ConnectionToSQL.cs,and DataAccess.cs]. The Person.cs class contains properties that match
+    As mentioned above, I used VS IDE to design the UI: <br> The UI contains lables, buttons, textboxes, and one listbox. The main UI does four missions, search in database.[People] by last name, delete a racord, show all records, and insert (add) new records. And as in  Additional Classes: <br>
+    I created three additional classes [Person.cs, ConnectionToSQL.cs,and DataAccess.cs]. The Person.cs class contains properties that match
     with the dbo.People columns as follows:
     
             public class Person
@@ -37,10 +36,10 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
 
                 }
             }
-     with additional get property that return full Informaition. 
+     with an additional get property that return full informaition. <br>
      
-     The ConnectionToSQL.cs class has a static method which recieve a string parameter and make a connection using Configuration Maneger
-     as follows:   
+     The ConnectionToSQL.cs class has a static method, which recieves a string parameter and make a connection using Configuration Maneger
+     as follows:   <br>
              
              using System.Configuration;
              public static class ConnectionToSQL
@@ -52,7 +51,7 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
                   }
 
               }
-      Before talking about the last class, first I want to talk about the server connection, in App.config file I used this tag <xml> tag:
+      Before talking about the last class, I want to talk about the server connection. In App.config file I used this tag <xml> <br>tag:
         <connectionStrings>
             <add name="salimConnection" connectionString="Server=.;         // Dot means that the connection is with a local server
             Database=SampleDB;Trusted_Connection=True;"
@@ -61,9 +60,9 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
         
         this tag is making a connection between the project and SQL Server.
         
-      Last but not least, the DataAccess.cs class. This class has five diffirent methods (GetPeople(),InsertData(),DeleteData(),
-      Total(),and ShowAll()).This class work using Dapper NuGet package installed.
-      GetPeople(string) it defined as a Person List and recieve a string parameter as follows:
+      Last but not least, the DataAccess.cs class, that has five diffirent methods (GetPeople(),InsertData(),DeleteData(),
+      Total(),and ShowAll()). This class works using Dapper NuGet package installed.
+      GetPeople(string) that is defined as a Person List and recieves a string parameter as follows: <br>
      
           public List<Person> GetPeople(string lastName)
           {
@@ -75,9 +74,10 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
               }
 
            }
-      then return an SQL Query (stored procedure "dbo.People_GetByLastName @LName ") result.
-      The scondnd method is InsertData() it defined as void method and recieve four parameters and using SQL query execution
-      ([dbo].[People_Insertt] @FName, @LName ,@Email ,@Phone") to insert the four parameters as new record.
+           <br>
+      then returns an SQL Query (stored procedure "dbo.People_GetByLastName @LName ") result.
+      The second method is InsertData() that is defined as a void method and recieves four parameters and using SQL query execution
+      ([dbo].[People_Insertt] @FName, @LName ,@Email ,@Phone") to insert the four parameters as a new record. <br>
 
         public void InsertData(string firstName, string lastName, string email, string phone)
         {
@@ -88,7 +88,7 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
                 MyConnection.Execute("[dbo].[People_Insertt] @FName, @LName ,@Email ,@Phone", people);
             }
         }
-      The next is deletion method DeleteData() it recieve one parameter from txtLastName.Text and using the SQL query delete the record
+      The next is deletion method DeleteData() that recieves one parameter from txtLastName.Text(TextBox), and using the SQL query to delete the record: <br>
         public void DeleteData(string lastNameD)
         {
             using (IDbConnection MyConnection = new System.Data.SqlClient.SqlConnection(ConnectionToSQL.ConnectionValue("salimConnection")))
@@ -97,9 +97,9 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
                MyConnection.Query<Person>($"Delete from People where LName='{lastNameD}'").ToList();
             }
         }
-
-      The next methods are called and work together. ShowAll() recieves no parameters , using the stored procedure ($"dbo.showAllPeople")
-      shows all dbo.People records on the screen (ListBox), and the other one, TotalR() shows the total of records.
+<br>
+      The next methods are being called and actually work together: ShowAll() that recieves no parameters, using the stored procedure ($"dbo.showAllPeople")
+      that shows all dbo.People records on the screen (ListBox).TotalR(), on the other hand, shows the total of records. <br>
         
         public List<Person> ShowAll()
         {
