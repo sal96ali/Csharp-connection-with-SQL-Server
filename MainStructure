@@ -1,5 +1,63 @@
-//Person Class
-//DataAccess Class
-//App.configuration
-//ConnectionToSQL class
+// Main Method
+
+namespace SqlDataAccess
+{
+    public partial class MyAppUI : Form
+    {
+        List<Person> people = new List<Person>(); //تعريف قائمة جديدة من نوع Person
+
+        private void UpdateBindings() // دالة مساعدة تقوم بعمل ريفريش
+        {
+            PeopleLastName.DataSource = people;
+            PeopleLastName.DisplayMember = "FullInfo";
+        }
+        
+        
+        public MyAppUI() // الدالة الرئيسية
+        {
+            InitializeComponent();
+            UpdateBindings();
+        }
+       
+       
+
+        private void btnSearch_Click(object sender, EventArgs e) // زر البحث
+        {
+            DataAccess data  = new DataAccess();
+            people = data.GetPeople(txtSearch.Text);
+            UpdateBindings();
+
+        }
+
+        
+
+        private void btnDelete_Click(object sender, EventArgs e)   // زر الحذف
+        {
+
+            DataAccess dataDelete = new DataAccess();
+            dataDelete.DeleteData(txtSearch.Text);
+            UpdateBindings();
+            MessageBox.Show("Record(s) deleted successfuly");
+
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e)  // زر يعرض جميع البيانات
+        {
+            DataAccess showAll = new DataAccess();
+            people = showAll.ShowAll();
+            lblTotalRecords.Text = showAll.TotalR();
+            UpdateBindings();
+        }
+        
+        private void btnAdd_Click(object sender, EventArgs e) // زر الاضافة
+        {
+            DataAccess dataInsert = new DataAccess();
+            dataInsert.InsertData(txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtPhone.Text);
+
+        }
+
+        
+    }
+}
+
 
