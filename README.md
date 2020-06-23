@@ -1,7 +1,7 @@
-# Csharp-connection-with-SQL-Server
-This is an SQL server connection demo using a desktop application C#-based. Written by : Salim Ali
+# Csharp-connection-with-SQL-Server <br>
+This is an SQL server connection demo using a desktop application C#-based.<br> Written by : Salim Ali
 
-1. <bold>Overview</bold> <br>
+1. <strong>Overview</strong> <br>
       First things first, this project is just a demo that tests the connection between Windows application (C# based)
     and a database stored in a local server.
 
@@ -120,9 +120,85 @@ This is an SQL server connection demo using a desktop application C#-based. Writ
         }
 
         
+    <br>
+    <strong>2.2 Part II : The Database</strong><br>
     
-    2.2 Part II : The Database
+       
+    As I mentioned earlier, I generated a random personal info using "random personal info website" to generate first name, last name, email, and phone numbers. And stored these data in a CSV file in my PC. Then, I imported them to a table which I called ([dbo].[People]) in a local database using SQL Server Management System (SSMS). Lastly, I made three stored procedures : [People_GetByLastName] ,[People_Insertt] ,and [showAllPeople].<br>
     
+<strong>People_GetByLastName </strong> 
+<br>
+This stored procedure recieves one parameter, @LName nvarchar(50) and search in the database table by this parameter (last name) as follows:<br> 
+    USE [SampleDB]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[People_GetByLastName]
+	---- parameters 
+      @LName nvarchar(50)
+	 AS
+BEGIN
+	SET NOCOUNT ON;
+
+      select *
+	from dbo.People
+	where LName = @LName
+END
+<br> 
+<br>
+    
+<strong>People_Insertt </strong> 
+The second one, recieves four parameters @FName nvarchar(50), @LName nvarchar(50), @Email nvarchar(50), @Phone nvarchar(50) rspectively, and
+inserts these values into dbo.People table as follows: 
+<br>
+USE [SampleDB]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[People_Insertt]
+@FName         nvarchar(50),
+@LName             nvarchar(50),
+@Email 	   nvarchar(50),
+@Phone	   nvarchar(50)
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+	insert into dbo.People(FName,LName,Email,Phone)
+	values (@FName , @LName , @Email ,@Phone)
+END
+<br>
+<strong>showAllPeople </strong><br>
+The last one is showAllPeople, this one recieves no parameters and return an int value "count(all)" as follows :<br>
+
+USE [SampleDB]
+GO
+/****** Object:  StoredProcedure [dbo].[showAllPeople]    Script Date: 23-Jun-20 23:09:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[showAllPeople] 
+	
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    SELECT * FROM People
+	select COUNT (*) from People
+
+END
+
     
     
     
