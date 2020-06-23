@@ -11,16 +11,16 @@ This is an SQL server connection demo using a desktop application C#-based.<br>
       This small project is divided into two seperate parts. The Windows Desktop Application part, and the Database part.
     In the first part I used Visual Studio IDE to accomplish it. In this environment I chose Windows Forms App (.Net Framework)
     C#-based and made the UI and its code as in attached files: <br>
-        UI:<br>
-        UI Code:<br>
-        Additional Classes:<br>
-    On other hand, I genrated a random personal info using this website: , first name, last name, email, and phone numbers. And stored these 
-    data in a CSV file in my PC. Lastly, I imported them to a table (I called it [dbo].[People]) in a local database using SQL Server Management System (SSMS).<br> 
+        UI:<img>src="https://drive.google.com/file/d/1FtR4DfvSLT-jQwq8Q7DrR8Oak2S0wCYr/view"</img><br>
+        UI Code:https://github.com/sal96ali/Csharp-connection-with-SQL-Server/blob/master/MainStructure<br>
+        Additional Classes:https://github.com/sal96ali/Csharp-connection-with-SQL-Server/blob/master/AdditionalClasses<br>
+    On other hand, I generated a random personal info using this website:http://www.randat.com/ to generate , first name, last name, email, and phone numbers. And stored these 
+    data in a CSV file in my PC. Lastly, I imported them to a table that I called "[dbo].[People]" in a local database using SQL Server Management System (SSMS).<br> 
     
     2.1 Part I: Windows Desktop Application<br>
     
-    As mentioned above, I used VS IDE to design the UI: <br> The UI contains lables, buttons, textboxes, and one listbox. The main UI does four missions, search in database.[People] by last name, delete a racord, show all records, and insert (add) new records. And as in  Additional Classes: <br>
-    I created three additional classes [Person.cs, ConnectionToSQL.cs,and DataAccess.cs]. The Person.cs class contains properties that match
+    As mentioned above, I used VS IDE to design the UI: <br> The UI contains lables, buttons, textboxes, and one listbox. The main UI does four missions, search in database.[People] by last name, delete a racord, show all records, and insert (add) new records. And as in  Additional Classes: https://github.com/sal96ali/Csharp-connection-with-SQL-Server/blob/master/AdditionalClasses<br>
+    I created three additional classes [Person.cs, ConnectionToSQL.cs,and DataAccess.cs].<br> The Person.cs class contains properties that match
     with the dbo.People columns as follows:
     
             public class Person
@@ -53,12 +53,12 @@ This is an SQL server connection demo using a desktop application C#-based.<br>
                   }
 
               }
-      Before talking about the last class, I want to talk about the server connection. In App.config file I used this tag <xml> <br>tag:
-        <connectionStrings>
-            <add name="salimConnection" connectionString="Server=.;         // Dot means that the connection is with a local server
+      Before talking about the last class, I want to talk about the server connection. In App.config file I used this xml tag: <br>
+        &lt;connectionStrings &gt;
+            &lt; add name="salimConnection" connectionString="Server=.;         &#47; &#47; Dot means that the connection is with a local server
             Database=SampleDB;Trusted_Connection=True;"
-            providerName="System.Data.SqlClient" />
-        </connectionStrings>
+            providerName="System.Data.SqlClient" &#47; &gt;
+        &lt;&#47; connectionStrings&gt;
         
         this tag is making a connection between the project and SQL Server.
         
