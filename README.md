@@ -203,7 +203,43 @@ END
 
     
     
-    
+<br> <strong>Results</strong><>
+When app is opened the main UI is:
+https://drive.google.com/file/d/1FtR4DfvSLT-jQwq8Q7DrR8Oak2S0wCYr/view?usp=drivesdk
+With these buttons and textboxes we can access, search, delete,insert and show data from the database.
+You can search for a specific person (by last name) by typing his last name in txtLastName textbox and click search button: <br>
+
+<strong>Search button clicked with last name ="Jones"</strong> <br>
+https://drive.google.com/file/d/1gWzbU6GZPNz0AGFLT22bSZafa3p8p34f/view?usp=drivesdk
+<br>
+You can delete a specific person by selecting his info on the listbox and click delete button:<br>
+<strong>Delete button clicked with "Alford Jones" is selected</strong> <br>
+https://drive.google.com/file/d/1jXYyrVuhpTXI6ZO_7GdjGo9ZiIdDiCZo/view?usp=drivesdk <br>
+Note that there is an issue after deletion process.<br>
+<strong>Search button clicked with last name is "Jones" (after deletion)</strong> <br>
+
+https://drive.google.com/file/d/1nVUQEEYf7RTMy2VBdO8_-UcIJPc-qpsR/view?usp=drivesdk
+<br>
+After deletion, the problem is when I select a specific individual record, the delete method deletes all people with the same last names. This problem can be solved easily "discussed in the discussion paragraph".
+<br>
+To show all records click Show All button:<br>
+<strong>Show All button clicked</strong> <br>
+https://drive.google.com/file/d/15U_YTlzwnPFit5dfYknFQdWw2V1nZQxu/view?usp=drivesdk
+<br>
+Finally, to insert a new person, fill the information textboxes and click the Add button.<br>
+
+<strong>button clicked with Salim Ali fake data</strong> <br>
+https://drive.google.com/file/d/1htRBCkhny64hXoj2sTmzyElAGa9pD67E/view?usp=drivesdk
+<br>
+To show the new racord type the last last name and click search button: <br>
+<strong> 
+Search button clicked with Salim's last name "Ali" is typed</strong> <br>
+https://drive.google.com/file/d/1-F8KxfFPjtEjXvKQTjrSpOp0MLdBKeqG/view?usp=drivesdk
+<br>
+<br>
+<br>
+
+
     When you click serach
     button (btnSearch) it behave:
     
